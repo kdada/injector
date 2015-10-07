@@ -1,8 +1,11 @@
 package injector
 
-import "reflect"
+import (
+	"fmt"
+	"reflect"
+)
 
-//注册kind 为 struct的创建器
+//注册kind 为 Struct的创建器
 var structRegErr = registerProviderCreator(reflect.Struct, newstructInjectorProvider)
 
 type structFieldInjectInfo struct {
@@ -78,6 +81,8 @@ func (this *structInjector) Inject() (interface{}, error) {
 		var fieldValue, err = this.ValueByTypeName(info.name)
 		if err == nil {
 			value.FieldByIndex(info.field.Index).Set(reflect.ValueOf(fieldValue))
+		} else {
+			fmt.Println(err)
 		}
 	}
 	return this.value, nil
