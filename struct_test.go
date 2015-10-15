@@ -36,7 +36,7 @@ func TestStructInjector(t *testing.T) {
 
 	var provider, err = NewInjectorProvider(SomeStruct{})
 	if err != nil {
-		fmt.Println("1-", err)
+		t.Error(err)
 		return
 	}
 	var injector, _ = provider.CreateInjector()
@@ -46,7 +46,7 @@ func TestStructInjector(t *testing.T) {
 		v.Service.Output()
 		fmt.Println(v)
 	} else {
-		fmt.Println("注入失败")
+		t.Error("结构体注入失败")
 	}
 
 }
