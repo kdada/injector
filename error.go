@@ -10,8 +10,7 @@ type InjectorError string
 
 // 错误码
 const (
-	InjectorErrorInvalidInjector InjectorError = "E10010:InjectorErrorInvalidInjector,无效的注入器"
-
+	InjectorErrorInvalidInjector   InjectorError = "E10010:InjectorErrorInvalidInjector,无效的注入器"
 	InjectorErrorNoCreator         InjectorError = "E30000:InjectorErrorNoCreator,不存在指定Kind(%s)的创建器"
 	InjectorErrorNoType            InjectorError = "E30010:InjectorErrorNoType,找不到指定类型(%s)的值"
 	InjectorErrorInvalidStructType InjectorError = "E30020:InjectorErrorInvalidStructType,类型(%s)不能转换为结构体类型"

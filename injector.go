@@ -1,9 +1,11 @@
-// 默认情况下,InjectorProvider能够解析结构体和方法的结构,并将结构信息存储在内部,
-// 在需要注入的时候,通过CreateInjector生成一个特定的注入器,
-// 特定的注入器包含一个指向指定注入结构(结构体或方法参数)的新实例
-// 特定的注入器可以额外设置临时使用的注入值
-// 特定的注入器通过调用Inject方法生成注入后产生的结果
-// 结果可能是结构体指针或函数返回的结果数组
+// Package injector 实现了结构体和方法参数的注入功能.
+// 默认情况下,InjectorProvider能够解析结构体和方法的结构,并将结构信息存储在内部.
+// 在需要注入的时候,通过CreateInjector生成一个特定的注入器.
+//
+// 特定的注入器包含一个指向指定注入结构(结构体或方法参数)的新实例.
+//  (1)特定的注入器可以额外设置临时使用的注入值
+//  (2)特定的注入器通过调用Inject方法生成注入后产生的结果
+// 结果可能是结构体指针或函数返回的结果数组.
 package injector
 
 import "reflect"
@@ -26,14 +28,17 @@ type ValueGenerator interface {
 
 // 值设置器
 // 设置器可以通过指定某个值或指定类型字符串来指定一个具体的类型
+//
 // 例如:
-// package some
-// type SomeStruct staruct{...}
+//  package some
+//  type SomeStruct staruct{...}
 // SomeStruct{} 和 "some.SomeStruct"均可用于指定该结构体类型
+//
 // &SomeStruct{} 和 "*some.SomeStruct"均可用于指定该结构体指针类型
+//
 // 但是如果要将某个值注入到一个接口中,则需要按照如下方式
-// package some
-// type SomeInterface interface {...}
+//  package some
+//  type SomeInterface interface {...}
 // (*SomeInterface)(nil) 和 "some.SomeInterface" 可以用于指明该接口类型
 type InjectorValueSetter interface {
 	// Map 映射值到值类型

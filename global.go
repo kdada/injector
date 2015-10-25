@@ -16,7 +16,7 @@ var (
 )
 
 // NewInjectorProvider 创建一个InjectorProvider
-// valueType:被注入的类型
+//  valueType:被注入的类型
 func NewInjectorProvider(valueType interface{}) (InjectorProvider, error) {
 	var vt = reflect.TypeOf(valueType)
 	var vtKind = vt.Kind()
@@ -27,10 +27,9 @@ func NewInjectorProvider(valueType interface{}) (InjectorProvider, error) {
 	return creator(valueType)
 }
 
-// registerProviderCreator 注册InjectorProvider创建器
-func registerProviderCreator(kind reflect.Kind, creator ProviderCreator) error {
+// RegisterProviderCreator 注册InjectorProvider创建器
+func RegisterProviderCreator(kind reflect.Kind, creator ProviderCreator) {
 	creatorsMu.Lock()
 	defer creatorsMu.Unlock()
 	creators[kind] = creator
-	return nil
 }

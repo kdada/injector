@@ -5,9 +5,6 @@ import (
 	"reflect"
 )
 
-//注册kind 为 Struct的创建器
-var structRegErr = registerProviderCreator(reflect.Struct, newstructInjectorProvider)
-
 type structFieldInjectInfo struct {
 	field reflect.StructField //字段类型
 	name  string              //字段类型名称

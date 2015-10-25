@@ -5,9 +5,6 @@ import (
 	"reflect"
 )
 
-//注册kind 为 Func的创建器
-var funcRegErr = registerProviderCreator(reflect.Func, newfuncInjectorProvider)
-
 type funcParamInjectInfo struct {
 	param reflect.Type //参数类型
 	name  string       //参数类型名称
